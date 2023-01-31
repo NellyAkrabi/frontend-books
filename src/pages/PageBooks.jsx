@@ -1,13 +1,10 @@
-import _books from '../data/books.json';
+//import _books from '../data/books.json';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 //const books = _books;
 
-const URL = "http://localhost:3005/books"
-
-
+const URL = "http://localhost:3005/books";
 
 export const PageBooks = () => {
     const [books, setBooks] = useState([]);
@@ -15,9 +12,9 @@ export const PageBooks = () => {
     useEffect(()=>{
         (async ()=> {
             setBooks((await axios.get(URL)).data)
-            
-        })
+        })()
     }, []);
+   
         return (
             <div className = "pageBooks">
                 <div className='books'>
