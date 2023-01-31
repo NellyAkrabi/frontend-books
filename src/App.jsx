@@ -1,11 +1,25 @@
-import './App.css'
+import './App.css';
+import { NavLink, Routes, Route, Navigate} from "react-router-dom";
+
+import { PageBooks } from './pages/PageBooks';
+import { PageHome } from './pages/PageHome';
+
 
 function App() {
   
 
   return (
     <div className="App">
-        <h1>Hallo</h1>
+        <nav>
+          <NavLink to="/welcome">Welcome</NavLink>
+          <NavLink to="/books">Books</NavLink>
+        </nav>
+
+        <Routes>
+          <Route path="/books" element={<PageBooks />}/>
+          <Route path="/welcome" element={<PageHome/>}/>
+
+        </Routes>
     </div>
   )
 }

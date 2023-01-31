@@ -14,7 +14,7 @@ if (name === undefined) {
     const content = `
     export const Page${name} = () => {
         return (
-            <div className = "page page${name}">
+            <div className = "page${name}">
                 <p>This is the ${name} page</p>
             </div>
         )
