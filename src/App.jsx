@@ -18,6 +18,8 @@ function App() {
         <Routes>
           <Route path="/books" element={<PageBooks />}/>
           <Route path="/welcome" element={<PageHome/>}/>
+          <Route path="/" element={<Navigate to="/welcome"/>}/>
+
 
         </Routes>
     </div>

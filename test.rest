@@ -1,4 +1,7 @@
-@url = http://localhost:3005/books
+@url = http://localhost:3005
 
 ### base route 
 {{url}}
+
+### delete a job
+DELETE {{url}}/books/63da6c08f8947ed0979f4858

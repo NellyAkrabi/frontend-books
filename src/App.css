@@ -26,12 +26,16 @@ a:hover {
 img {
   height: 170px;
 }
-.book {
-  display: flex;
+.info {
   margin: 1.7rem;
   padding: 1.5rem;
   background-color: rgba(51, 51, 51, 0.871);
   color:#ccc;
+}
+
+.book {
+  display: flex;
+ 
 }
 .content {
   margin-left: 1.3rem;
@@ -46,7 +50,9 @@ img {
 }
 .rest-info {
   margin-left: 1rem;
+  padding-left: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-left: 1px solid #ccc;
 }
