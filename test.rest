@@ -4,4 +4,6 @@
 {{url}}
 
 ### delete a job
-DELETE {{url}}/books/63da6c08f8947ed0979f4858
+DELETE {{url}}/books/
+
+### save an edited job

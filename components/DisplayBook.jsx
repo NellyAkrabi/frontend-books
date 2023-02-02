@@ -1,56 +1,5 @@
-//import _books from '../data/books.json';
-import { useState, useEffect } from "react";
-import instance from "./axios";
-
-//const books = _books;
-
-export const PageBooks = () => {
-  const [rawBooks, setBooks] = useState([]);
-
-
-  // !!!! need to useContext
-
-  const loadBooks = async () => {
-    setBooks((await instance.get("/books")).data);
-    /** const _books = [];
-    rawBooks.forEach(rawBook =>{
-        const _book = {
-            ...rawBook,
-            userIsEditing: true
-        }   
-        _books.push(_book);
-    })
-    setBooks(_books); */
-  }
-
-  useEffect(() => {
-    (async () => {
-        loadBooks();        
-    })();
-  }, []);
-
-  const handleDeleteBook = async (_book) => {
-        try {
-            const res = await instance.delete(`/books/${_book._id}`)
-            if (res.status = 200) {
-                await loadBooks();
-                console.log(_book._id);
-            }
-        } catch (e) {
-            console.error(`ERROR: ${e}`);
-        }
-    }
-
-
-//----------
-
-  return (
-    <div className="pageBooks">
-      <div className="books">
-        <h2>There are {rawBooks.length} books</h2>
-        {rawBooks.map((_book) => {
-          return (
-            <div className="info" key={_book._id}>
+export const DisplayBook = () => {
+    <div className="info" key={_book._id}>
               <div className="book">
                     <div className="book-cover">
                         <img src={_book.img} alt="" />
@@ -93,9 +42,4 @@ export const PageBooks = () => {
                     </div>
                 </div>
             </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};  
+}
