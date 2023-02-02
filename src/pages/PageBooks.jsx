@@ -1,5 +1,5 @@
 //import _books from '../data/books.json';
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import instance from "./axios";
 
 //const books = _books;
@@ -7,13 +7,37 @@ import instance from "./axios";
 export const PageBooks = () => {
   const [books, setBooks] = useState([]);
 
+
+  // !!!! need an useContext
+
+  const loadAllBooks = async () => {
+    setBooks((await instance.get("/books")).data);
+  }
+
   useEffect(() => {
     (async () => {
-      setBooks((await instance.get("/books")).data);
+        loadAllBooks()
     })();
   }, []);
 
-  //const { book, handleDeleteBook } = useContext(AppContext);
+  const handleDeleteBook = async (_book) => {
+        try {
+            const res = await instance.delete(`/books/${_book._id}`)
+            if (res.status = 200) {
+                await loadAllBooks();
+                console.log(_book._id);
+            }
+        } catch (e) {
+            console.error(`ERROR: ${e}`);
+            const message = e.response.data.message;
+            if (message) {
+                console.error(`ERROR: ${e}`);                
+            }
+        }
+    }
+
+
+
 
   return (
     <div className="pageBooks">
@@ -60,7 +84,7 @@ export const PageBooks = () => {
                 </div>
                 <div className="managePanel">
                     <div className="deleteButton">
-                        <button onClick={() => handleDeleteBook(book)}>Delete</button>
+                        <button onClick={() => handleDeleteBook(_book)}>Delete</button>
                     </div>
                 </div>
             </div>
