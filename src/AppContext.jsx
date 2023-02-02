@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import instance from "./pages/axios";
 
 export const AppContext = createContext();
