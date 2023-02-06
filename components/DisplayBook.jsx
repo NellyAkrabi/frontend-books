@@ -1,52 +1,60 @@
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
+import { EditBook } from "./EditBook";
 
 export const DisplayBook = (props) => {
-  const { handleDeleteBook } = useContext(AppContext);
+  const { books, handleTooggleEditStatus, handleDeleteBook } = useContext(AppContext);
+  const { book } = props;
 
   return (
     <div className="info">
       <div className="book" key={props.book._id}>
             <div className="book-cover">
-                <img src={props.book.img} alt="" />
+                <img src={book.img} alt="" />
             </div>
             <div className="content">
                 <div className="title">
-                    <h2>{props.book.title}</h2>
+                    <h2>{book.title}</h2>
                 </div>
                 <div className="author">
-                    <h5>{props.book.author}</h5>
+                    <h5>{book.author}</h5>
                 </div>
                 <div className="description">
-                    <p>{props.book.description}</p>
+                    <p>{book.description}</p>
                 </div>
                 <div className="price">
-                    <h4>Price: {props.book.price} $</h4>
+                    <h4>Price: {book.price} $</h4>
                 </div>
                 </div>
                 <div className="rest-info">
                 <div className="isbn">
-                    <p>ISBN: {props.book.ISBN}</p>
+                    <p>ISBN: {book.ISBN}</p>
                 </div>
                 <div className="publicationDate">
-                    <p>Public: {props.book.puplication.split("T22:00:00.000Z")}</p>
+                    <p>Public: {book.puplication.split("T22:00:00.000=00:00")}</p>
                 </div>
                 <div className="category">
-                    <p>Genre: {props.book.category.join(", ")}</p>
+                    <p>Genre: {book.category.join(", ")}</p>
                 </div>
                 <div className="age">
-                    <p>Ab {props.book.age} Jahren</p>
+                    <p>Ab {book.age} Jahren</p>
                 </div>
                 <div className="pages">
-                    <p>Pages: {props.book.pages}</p>
+                    <p>Pages: {book.pages}</p>
                 </div>
             </div>
       </div>
 
       <div className="managePanel">
-        <div className="deleteButton">
-          <button onClick={() => handleDeleteBook(props.book)}>Delete</button>
+
+        <div>
+          <button className="deleteButton" onClick={() => handleDeleteBook(book)}>Delete</button>
         </div>
+
+        <div className="editButton">
+            <button></button>
+        </div>
+
       </div>
     </div>
   );

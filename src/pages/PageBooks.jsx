@@ -1,7 +1,8 @@
 //import _books from '../data/books.json';
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { DisplayBook } from "../../components/DisplayBook";
 import { AppContext } from "../AppContext";
+import { EditBook } from "../../components/EditBook";
 
 //const books = _books;
 
@@ -17,7 +18,16 @@ export const PageBooks = () => {
         {rawBooks.map((_book) => {
           return (
            <div key={_book._id}>
-              <DisplayBook book = {_book} />
+
+                 <DisplayBook book = {_book} />
+
+             
+              {/**_book.userIsEditing ? (
+                 <EditBook book = {_book}/>
+                 ) : (
+                 <DisplayBook book = {_book} />
+                 )*/}
+              
            </div>
           );
         })}
