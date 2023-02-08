@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
 
 export const DisplayBook = (props) => {
-  const { handleDeleteBook, handleEditBook } = useContext(AppContext);
+  const { handleDeleteBook, onOpenEditForm } = useContext(AppContext);
   const { book } = props;
 
   return (
@@ -45,12 +45,10 @@ export const DisplayBook = (props) => {
       </div>
 
       <div className="managePanel">
-
         <div>
           <button className="deleteButton" onClick={() => handleDeleteBook(book)}> Delete </button>
-          <button className="editButton" onClick={() => handleEditBook(book._id)}> Edit </button>
+          <button className="editButton" onClick={() => onOpenEditForm(book._id)}> Edit </button>
         </div>
-
       </div>
     </div>
   );

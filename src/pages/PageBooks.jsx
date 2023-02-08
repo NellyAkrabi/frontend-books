@@ -8,7 +8,7 @@ import { EditBook } from "../../components/EditBook";
 
 export const PageBooks = () => {
     const {
-        rawBooks, editBook
+        rawBooks, editingElementId, onUpdateElement
     } = useContext(AppContext);
 
   return (
@@ -18,9 +18,9 @@ export const PageBooks = () => {
         {rawBooks.map((_book) => {
           return (
            <div key={_book._id}>
-              {editBook ?
+              {_book._id === editingElementId ?
                (
-                 <EditBook book = {_book}/>
+                 <EditBook book = {_book} />
                  ) : (
                  <DisplayBook book = {_book} />
                  )}

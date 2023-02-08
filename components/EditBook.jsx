@@ -16,7 +16,7 @@ export const EditBook = ({id, book }) => {
               value={book.title}
               type="text"
               onChange={(e)=> {
-                setTempBooks({...tempBook, title: e.target.value})
+                setTempBooks(e.target.value)
               }}
             />
           </div>
@@ -29,7 +29,7 @@ export const EditBook = ({id, book }) => {
               value={book.author}
               type="text"
               onChange={(e)=> {
-                setTempBooks({...tempBook, author: e.target.value})
+                setTempBooks(e.target.value)
               }}
             />
           </div>
