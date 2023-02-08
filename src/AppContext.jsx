@@ -1,23 +1,25 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+import { EditBook } from "../components/EditBook";
 import instance from "./pages/axios";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
-    const [rawBooks, setBooks] = useState([]);
+    const [rawBooks, setRawBooks] = useState([]);
+    const [editBook, setEditBook] = useState (false)
 
     const loadBooks = async () => {
-        setBooks((await instance.get("/books")).data);
-        /** const _books = [];
-        rawBooks.forEach(rawBook =>{
+        const books = (await instance.get("/books")).data;
+        const _books = [];
+        books.forEach(rawBook =>{
             const _book = {
                 ...rawBook,
-                userIsEditing: true
             }   
             _books.push(_book);
+        
         })
-        setBooks(_books); */
+        setRawBooks(_books);
     };
 
     useEffect(() => {
@@ -38,11 +40,18 @@ export const AppProvider = ({children}) => {
         }
     }
 
+    const handleEditBook = (_book) => {
+        console.log(_book);
+        setEditBook(true)
+    }
+    
     
     return (
         <AppContext.Provider value = {{
             rawBooks,
+            editBook,
             handleDeleteBook,
+            handleEditBook
         }}>
             {children}
         </AppContext.Provider>

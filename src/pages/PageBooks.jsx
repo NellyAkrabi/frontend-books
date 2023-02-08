@@ -8,7 +8,7 @@ import { EditBook } from "../../components/EditBook";
 
 export const PageBooks = () => {
     const {
-        rawBooks,
+        rawBooks, editBook
     } = useContext(AppContext);
 
   return (
@@ -18,15 +18,12 @@ export const PageBooks = () => {
         {rawBooks.map((_book) => {
           return (
            <div key={_book._id}>
-
-                 <DisplayBook book = {_book} />
-
-             
-              {/**_book.userIsEditing ? (
+              {editBook ?
+               (
                  <EditBook book = {_book}/>
                  ) : (
                  <DisplayBook book = {_book} />
-                 )*/}
+                 )}
               
            </div>
           );

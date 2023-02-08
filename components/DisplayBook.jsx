@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../src/AppContext";
-import { EditBook } from "./EditBook";
 
 export const DisplayBook = (props) => {
-  const { books, handleTooggleEditStatus, handleDeleteBook } = useContext(AppContext);
+  const { handleDeleteBook, handleEditBook } = useContext(AppContext);
   const { book } = props;
 
   return (
@@ -48,11 +47,8 @@ export const DisplayBook = (props) => {
       <div className="managePanel">
 
         <div>
-          <button className="deleteButton" onClick={() => handleDeleteBook(book)}>Delete</button>
-        </div>
-
-        <div className="editButton">
-            <button></button>
+          <button className="deleteButton" onClick={() => handleDeleteBook(book)}> Delete </button>
+          <button className="editButton" onClick={() => handleEditBook(book._id)}> Edit </button>
         </div>
 
       </div>
