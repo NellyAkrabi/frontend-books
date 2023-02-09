@@ -3,13 +3,22 @@ import { useContext } from "react";
 import { DisplayBook } from "../../components/DisplayBook";
 import { AppContext } from "../AppContext";
 import { EditBook } from "../../components/EditBook";
+import { useEffect } from "react";
+
 
 //const books = _books;
 
 export const PageBooks = () => {
     const {
-        rawBooks, editingElementId, onUpdateElement
+        rawBooks, editingElementId, loadBooks
     } = useContext(AppContext);
+
+
+    useEffect(() => {
+      (async () => {
+          loadBooks();        
+      })();
+  }, []);
 
   return (
     <div className="pageBooks">

@@ -1,12 +1,17 @@
 import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import instance from "./pages/axios";
+import axios from "axios";
+
+
 
 export const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
     const [rawBooks, setRawBooks] = useState([]);
     const [editingElementId, setEditingElementId] = useState(null)
+    const [formData, setFormData] = useState([]);
+
 
     const loadBooks = async () => {
         const books = (await instance.get("/books")).data;
@@ -14,6 +19,18 @@ export const AppProvider = ({children}) => {
         books.forEach(rawBook =>{
             const _book = {
                 ...rawBook,
+/**                editItem: {
+                    title: rawBook.title,
+                    author: rawBook.author,
+                    img: rawBook.img,
+                    price: rawBook.price,
+                    isbn: rawBook.ISBN,
+                    category: rawBook.category,
+                    publication: rawBook.publication,
+                    age: rawBook.age,
+                    pages: rawBook.pages,
+                }     
+*/              
             }   
             _books.push(_book);
         
@@ -21,11 +38,6 @@ export const AppProvider = ({children}) => {
         setRawBooks(_books);
     };
 
-    useEffect(() => {
-        (async () => {
-            loadBooks();        
-        })();
-    }, []);
 
     const handleDeleteBook = async (_book) => {
         try {
@@ -51,14 +63,31 @@ export const AppProvider = ({children}) => {
     const onOpenEditForm = (id) => {
         setEditingElementId(id)
     }
-    
+
+    const handleChangeFormField = (e) => {
+        const value = e.target.value;
+        formData.editItem = value;
+        setFormData({ ...formData });
+    }
+
+    const handleSaveAddedBook = async() => {
+        
+    };
+
+
+
     
     return (
         <AppContext.Provider value = {{
-            rawBooks,            handleDeleteBook,
+            rawBooks,            
+            handleDeleteBook,
             handleEditBook,
             onOpenEditForm,
             editingElementId,
+            loadBooks,
+            setFormData,
+            handleChangeFormField,
+            handleSaveAddedBook
         }}>
             {children}
         </AppContext.Provider>

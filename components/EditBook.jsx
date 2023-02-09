@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../src/AppContext";
 
-export const EditBook = ({id, book }) => {
-    const [tempBook, setTempBooks] = useState([]);
+
+export const EditBook = ({ book, updatedBook }) => {
+    const { handleChangeFormField, handleSaveAddedBook } = useContext(AppContext);
+   
 
   return (
     <form className="editForm">
       <fieldset>
-        <legend>Editing Book</legend>
+        <legend>Edit Book</legend>
 
         <div className="row">
           <label>Title</label>
           <div>
-            <input
-              
+            <input              
               value={book.title}
               type="text"
               onChange={(e)=> {
-                setTempBooks(e.target.value)
+                handleChangeFormField(e, 'title')
               }}
             />
           </div>
@@ -29,7 +31,86 @@ export const EditBook = ({id, book }) => {
               value={book.author}
               type="text"
               onChange={(e)=> {
-                setTempBooks(e.target.value)
+                handleChangeFormField(e, 'author')
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Book Image</label>
+          <div>
+            <input
+              value={book.img}
+              type="text"
+              onChange={(e)=> {
+                handleChangeFormField(e, 'img')
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Price</label>
+          <div>
+            <input
+              value={book.price}
+              type="number"
+              onChange={(e)=> {
+                handleChangeFormField(e, 'price')
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>ISBN</label>
+          <div>
+            <input
+              value={book.ISBN}
+              type="number"
+              onChange={(e)=> {
+                handleChangeFormField(e, 'ISBN')
+              }}
+            />
+          </div>
+        </div>
+
+
+        <div className="row">
+          <label>Genre</label>
+          <div>
+            <input
+              value={book.category}
+              type="text"
+              onChange={(e)=> {
+                handleChangeFormField(e, 'category')
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Age</label>
+          <div>
+            <input
+              value={book.age}
+              type="number"
+              onChange={(e)=> {
+                handleChangeFormField(e, 'age')
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <label>Pages</label>
+          <div>
+            <input
+              value={book.pages}
+              type="number"
+              onChange={()=> {
+                handleChangeFormField(e, 'pages')
               }}
             />
           </div>
@@ -38,7 +119,7 @@ export const EditBook = ({id, book }) => {
 
         <div className="buttonRow">
           <button >Cancel</button>
-          <button >Save</button>
+          <button onClick={() => handleSaveAddedBook()} >Save</button>
         </div>
       </fieldset>
     </form>
